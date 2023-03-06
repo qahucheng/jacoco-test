@@ -12,4 +12,13 @@ public class FuctionService {
     public void methodB() {
         System.out.println("do method B");
     }
+
+    public void methodC() {
+        System.out.println("do method C");
+    }
+
+    public void methodD() {
+        System.out.println("do method C");
+    }
+
 }

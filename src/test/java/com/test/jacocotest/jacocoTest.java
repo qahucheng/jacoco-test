@@ -14,7 +14,6 @@ public class jacocoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void test1() {
-        service.methodA();
-        service.methodB();
+        service.methodC();
     }
 }
