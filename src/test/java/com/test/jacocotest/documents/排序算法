@@ -1,0 +1,147 @@
+排序算法
+
+
+冒泡排序算法 O(n * n)
+public void bubbleSort(int[] arr) {
+	for(int i = 0; i < arr.length; i++ ) {
+		for(int j = 0; j < arr.length - 1 - i; j++) {
+			if(arr[j] > arr[j+1]) {
+				swap(arr, j , j+1);
+			}
+		}
+	}
+}
+
+选择排序   O(n * n)
+public void selectSort(int[] arr) {
+	for(int i = 0; i < arr.length; i ++ ){
+		int minindex = i;
+		for(int j = i; j < arrgth; j ++) {
+			if(arr[j] < arr[minindex]) {
+				minindex = j;
+			}
+		}
+		swap(arr, i, minindex);
+	}
+
+}
+
+
+插入排序 O(n * n)
+public void  insertSort(int[] arr) {
+	for(int i = 1; i < arr.length; i++) {
+		for (int j = i, j > 0; j--) {
+			if(arr[j] < arr[j - 1]) {
+				swap(arr, j, j-1);
+			}
+		}
+	}
+}
+
+希尔排序
+public void shellSOrt(int[] arr) {
+	for(int gap = len /2; gap > 0 ; gap /=2 ) {
+		for(int i = gap; i < arr.length; i ++) {
+			for (int j = i; j > 0 ; j -=gap) {
+				if(arr[j] <  arr[j-gap])
+ 				{
+					swap(arr, j, j-gap);
+				}
+			}
+		}
+	}
+}
+
+
+
+快速排序。O(nlogn)
+public void quickSort(int[] arr, int left, int right){
+	if (left < right) {
+		//开始快速排序
+		int i = left;
+		int j = right;
+		int pivot = arr[i];
+		while (i < j){
+			//从右往左
+			while(i < j &&arr[j] >= pivot) {
+				j--;
+			}
+			swap(arr, i, j);
+			//从左往右
+			while(i < j &&arr[i] <= pivot) {
+				i++;
+			}
+			swap(arr, i, j);
+
+		}
+		quickSort(arr, left, i - 1);
+		quickSort(arr, i + 1, high);
+
+	}
+
+}
+
+
+堆排序
+public void heapSOrt(int[] arr) {
+
+	//初始化建堆操作
+	for(int i = arr.length/2 -1; i >=0 ; i --) {
+		heapify(arr, i , arr.length - 1);
+	}
+	//调整堆
+	for(int i = arr.length -1 ; i > 0 ; i--) {
+		swap(arr, 0, i);
+		heapify(arr, 0, i-1);
+	}
+}
+
+public void heapify(int[] arr, int i, int last) {
+	int max = i;
+	if(2 * i + 1 >= last && arr[2 * i + 1] > arr[max]) {
+		max = 2 * i + 1;
+	}
+	if(2 * i + 2 >= last && arr[2 * i + 2] > arr[max]) {
+		max = 2 * i + 2;
+	}
+	if(max != i) {
+		swap(arr, max, i);
+		heapify(arr, max, last);
+	}
+}
+
+
+归并排序
+public void mergeSOrt(int[] arr, int left, int right) {
+	if (left < right) {
+		int mid = (left + right) /2;
+		mergeSort(arr, left, mid);
+		mergeSort(arr, mid + 1, high);
+		merge(arr, left, mid, right);
+	}
+}
+public void merge(int[] arr, int left, int mid, int right) {
+	int[] temp = new int[arr.length];
+	int i = left;
+	int j = mid +1;
+	int k =0;
+    while(i <= mid  && j<= right) {
+    	if(arr[i] < arr[j]) {
+    		temp[k++] = arr[i++];
+    	} else {
+    		temp[k++] = arr[j++];
+    	}
+    }
+    while(i <=mid) {
+    temp[k++] = arr[i++];
+    }
+    while(j <=right) {
+    temp[k++] = arr[j++];
+    }
+    int k = 0;
+    while(low <= high) {
+    	arr[low++] = temp[k++]
+    }
+}
+
+
